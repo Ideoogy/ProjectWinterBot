@@ -30,7 +30,6 @@ async def on_ready():
     for guild in client.guilds:
         if guild.name == GUILD:
             break
-
     print(
         f'{client.user} is connected to the following guild:\n'
         f'{guild.name}(id: {guild.id})'
@@ -40,8 +39,9 @@ async def on_ready():
 async def on_message(message):
 	global ready_list, req_count
 	user = message.author
+	user_message = message.content.lower()
 
-	if message.content == "!ready":
+	if user_message == "!ready":
 		ready_list.add(user)
 		await message.channel.send(f'{user.name} is ready')
 		if len(ready_list) == req_count:
@@ -50,17 +50,17 @@ async def on_message(message):
 		else:
 			await message.channel.send(f'People ready: {len(ready_list)}/{req_count}')
 
-	elif message.content == "!unready":
+	elif user_message == "!unready":
 		if user in ready_list:
 			ready_list.remove(user)
 		await message.channel.send(f'{user.name} is not ready')
 		await message.channel.send(f'People ready: {len(ready_list)}/{req_count}')
 
-	elif message.content == "!status":
+	elif user_message == "!status":
 		await message.channel.send(f'People ready: {len(ready_list)}/{req_count}')
 		await message.channel.send("List: " + name_list())
 
-	elif message.content == "!reset":
+	elif user_messaget == "!reset":
 		ready_list = set([])
 		await message.channel.send("List Reset Successfully")
 	else:
