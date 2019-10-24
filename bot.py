@@ -60,7 +60,7 @@ async def on_message(message):
 		await message.channel.send(f'People ready: {len(ready_list)}/{req_count}')
 		await message.channel.send("List: " + name_list())
 
-	elif user_messaget == "!reset":
+	elif user_message == "!reset":
 		ready_list = set([])
 		await message.channel.send("List Reset Successfully")
 	else:
