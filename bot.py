@@ -16,7 +16,7 @@ ready_list = set([])
 def alert_list():
 	message = ""
 	for user in ready_list:
-		message += f'@{user.name}#{user.discriminator}'
+		message += f'@{user.name}#{user.discriminator} '
 	return message
 
 def name_list():
